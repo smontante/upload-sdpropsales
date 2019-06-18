@@ -16,7 +16,7 @@ function splitCsv(str) {
 
 const input = document.querySelector('input[type=file]');
 input.addEventListener('change', function (e) {
-    // console.log('UPLOAD RESPONSE: ', input.files)
+    console.log('upload response: ', input.files)
     const reader = new FileReader()
     reader.onload = function () {
         var lines_ = reader.result.split("\n");
@@ -38,29 +38,22 @@ input.addEventListener('change', function (e) {
         }
 
         results = JSON.stringify(result);
-        console.log('JSON Results: ', results);
-        console.log('Phone Test: ', result[3].phone);
+        console.log('json results: ', results);
 
-        // for(let p = 0;  p < result.length; p++) {
-        //     console.log('Name: ', result[p].name, 'Phone: ', result[p].phone); 
-        // }
-        
-        function getPhones(arr) {
-            for(let p = 0; p < arr.length; p++) {
-                results = result[p].phone;
+        let phones = [];
+        for (let i = 0; i < result.length; i ++) {
+            if(result[i].phone) {
+              phones.push(result[i].phone);
             }
-            console.log(results);
-            return results;
         }
+        console.log('phone numbers: ', phones);
+        console.log('phone', phones[3]);
 
         const lines = reader.result.split('\n').map(function (line) {
             return line.split(',')
         });
     }
     reader.readAsText(input.files[0]);
-
-    getPhones(result);
-    
 }, false);
 
 
