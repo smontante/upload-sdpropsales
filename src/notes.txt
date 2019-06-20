@@ -1,0 +1,15 @@
+//home value scrapers
+//zip-foreclosures.com
+//housegather.cm
+//whois.org shows who owns domains
+//hudhomesusa.org
+
+//fiverr reverse scraping, check our database and first american title 
+    //post to those fields 
+
+/*
+TITLE REPS LIKE US THE MOST
+
+THEY PROVIDE US WITH DATA
+IF WE GIVE THEM THE TITLE SALE 
+*/

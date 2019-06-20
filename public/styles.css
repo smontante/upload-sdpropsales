@@ -19,8 +19,13 @@ html{
   }
   
   img {
-    max-width: 35%;
-    max-height: 35%;
+    position: relative;
+    max-width: 25%;
+    max-height: 25%;
+  }
+
+  h5 {
+    margin: 65px;
   }
 
   .file-upload {
@@ -42,10 +47,6 @@ html{
       font-size:100px;
   }
 
-    h3 {
-        color: #333333;
-        margin:80px;
-    }
 
     input[type='file'] {
         height:200px;

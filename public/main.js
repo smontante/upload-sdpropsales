@@ -1,5 +1,12 @@
-let results; 
+let result = [];
+let results = [];
+let phones = [];
+let verified = [];
+let filename;
 
+const input = document.querySelector('input[type=file]');
+
+//FUNCTION SPLITS AND SPACES CSV FINDING COMMAS
 function splitCsv(str) {
     return str.split(',').reduce((accum, curr) => {
         if (accum.isConcatting) {
@@ -14,13 +21,27 @@ function splitCsv(str) {
     }, {soFar: [], isConcatting: false}).soFar
 }
 
-const input = document.querySelector('input[type=file]');
+//EXTRACTS PHONE NUMBERS FROM JSON ARRAY
+function getPhones(arr){
+    //arr = result
+    for (let i = 0; i < arr.length; i ++) {
+        if(arr[i].phone) {
+            phones.push(arr[i].phone);
+        }
+    }
+    console.log('phone numbers: ', phones);
+}
+
+//FUNCTION LISTENS TO EVENT CHANGE UPON FILE INPUT
 input.addEventListener('change', function (e) {
-    console.log('upload response: ', input.files)
+    //GETS FILE NAME
+    filename = input.files[0].name;
+    document.getElementById('filename').innerHTML = 'UPLOADED FILE: ' + input.files[0].name;
+    console.log(filename);
+
     const reader = new FileReader()
     reader.onload = function () {
         var lines_ = reader.result.split("\n");
-        var result = [];
         var headers = lines_[0].split(",");
         headers = headers.map(function (h) {
             return h.trim();
@@ -36,18 +57,11 @@ input.addEventListener('change', function (e) {
             }
             result.push(obj);
         }
-
         results = JSON.stringify(result);
-        console.log('json results: ', results);
 
-        let phones = [];
-        for (let i = 0; i < result.length; i ++) {
-            if(result[i].phone) {
-              phones.push(result[i].phone);
-            }
-        }
-        console.log('phone numbers: ', phones);
-        console.log('phone', phones[3]);
+        getPhones(result);
+
+        verify(phones);
 
         const lines = reader.result.split('\n').map(function (line) {
             return line.split(',')
@@ -55,6 +69,30 @@ input.addEventListener('change', function (e) {
     }
     reader.readAsText(input.files[0]);
 }, false);
+
+//FUNCTION TAKES THE PHONE NUMBERS ARE RUNS THROUGH XVERIFY
+function verify(arr) {
+    for(let v = 0; v < arr.length; v++) {
+        if(arr[v]) {
+        const Url = 'http://www.xverify.com/services/phone/verify/?phone=' + arr[v] + '&type=json&apikey=1013219-CBA2827D&domain=agentzip.com';
+
+        fetch(Url)
+            .then(data => { return data.json() })
+            .then(res => { 
+                verified.push(res);
+            })
+            .catch(error => { console.log('Error: ', error)})
+        } 
+    }
+    console.log('verified: ', verified);
+}
+
+
+
+
+
+
+
 
 
 
