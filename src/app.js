@@ -2,7 +2,7 @@ require('../db/mongoose')
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const Upload = require('../models/upload')
 const publicDirectioryPath = path.join(__dirname, '../public');
 
@@ -23,3 +23,6 @@ app.listen(port, ()=> {
     console.log('listening on port ', port)
 });
 
+
+//git remove -v to see what remotes to push too
+// heroku push url - https://git.heroku.com/agentzip-upload.git
