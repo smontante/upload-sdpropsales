@@ -2,8 +2,10 @@ let result = [];
 let results = [];
 let phones = [];
 let verified = [];
-let filename;
+let lead = {};
 
+const btn = document.querySelector('#submit');
+const filetitle = document.querySelector('#filetitle');
 const input = document.querySelector('input[type=file]');
 
 //FUNCTION SPLITS AND SPACES CSV FINDING COMMAS
@@ -21,23 +23,10 @@ function splitCsv(str) {
     }, {soFar: [], isConcatting: false}).soFar
 }
 
-//EXTRACTS PHONE NUMBERS FROM JSON ARRAY
-function getPhones(arr){
-    //arr = result
-    for (let i = 0; i < arr.length; i ++) {
-        if(arr[i].phone) {
-            phones.push(arr[i].phone);
-        }
-    }
-    console.log('phone numbers: ', phones);
-}
-
 //FUNCTION LISTENS TO EVENT CHANGE UPON FILE INPUT
 input.addEventListener('change', function (e) {
-    //GETS FILE NAME
     filename = input.files[0].name;
-    document.getElementById('filename').innerHTML = 'UPLOADED FILE: ' + input.files[0].name;
-    console.log(filename);
+    filetitle.innerHTML = 'UPLOADED FILE: ' + input.files[0].name;
 
     const reader = new FileReader()
     reader.onload = function () {
@@ -57,35 +46,47 @@ input.addEventListener('change', function (e) {
             }
             result.push(obj);
         }
-        results = JSON.stringify(result);
-
-        getPhones(result);
-
-        verify(phones);
 
         const lines = reader.result.split('\n').map(function (line) {
             return line.split(',')
         });
+        
+        results = JSON.stringify(result);
     }
     reader.readAsText(input.files[0]);
+    console.log('results testing: ', result);
+
+    btn.addEventListener('click', () => {
+        for (let i = 0; i < result.length; i++) {
+            lead = {
+                name: result[i].name,
+                email: result[i].email,
+                phone: result[i].phone,
+                city: result[i].city,
+                state: result[i].state,
+                zip: result[i].zip,
+                company: result[i].company
+            }
+
+            const options ={
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(lead),
+            }
+        fetch('/upload', options); 
+        } 
+        alert('File has been sent!')
+    });
+
+
 }, false);
 
-//FUNCTION TAKES THE PHONE NUMBERS ARE RUNS THROUGH XVERIFY
-function verify(arr) {
-    for(let v = 0; v < arr.length; v++) {
-        if(arr[v]) {
-        const Url = 'http://www.xverify.com/services/phone/verify/?phone=' + arr[v] + '&type=json&apikey=1013219-CBA2827D&domain=agentzip.com';
 
-        fetch(Url)
-            .then(data => { return data.json() })
-            .then(res => { 
-                verified.push(res);
-            })
-            .catch(error => { console.log('Error: ', error)})
-        } 
-    }
-    console.log('verified: ', verified);
-}
+
+
+
 
 
 
