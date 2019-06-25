@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/app.js",
-    "db": "/Users/admin/mongodb/bin/mongod --dbpath /Users/admin/mongodb-data"
+    "start": "node src/app.js"
   },
   "author": "",
   "license": "ISC",
