@@ -2,7 +2,8 @@ let result = [];
 let results = [];
 let phones = [];
 let verified = [];
-let lead = {};
+let caLead = {};
+let flLead = {};
 
 const btn = document.querySelector('#submit');
 const filetitle = document.querySelector('#filetitle');
@@ -36,7 +37,7 @@ input.addEventListener('change', function (e) {
             return h.trim();
         });
 
-        for (var i = 1; i < lines_.length; i++) {
+        for (var i = 1; i < lines_.length; i++) {   
             var obj = {};
             var currentline = splitCsv(lines_[i]);
             for (var j = 0; j < headers.length; j++) {
@@ -58,14 +59,23 @@ input.addEventListener('change', function (e) {
 
     btn.addEventListener('click', () => {
         for (let i = 0; i < result.length; i++) {
-            lead = {
-                name: result[i].name,
+
+            flLead = {
+                id: result[i].id,
+                created_time: result[i].created_time,
+                ad_id: result[i].ad_id,
+                ad_name: result[i].ad_name,
+                adset_id: result[i].adset_id,
+                adset_name: result[i].adset_name,
+                campaign_id: result[i].campaign_id,
+                campaign_name: result[i].campaign_name,
+                form_id: result[i].form_id,
+                form_name: result[i].form_name,
+                is_organic: result[i].is_organic,
+                zip_code: result[i].zip_code,
                 email: result[i].email,
-                phone: result[i].phone,
-                city: result[i].city,
-                state: result[i].state,
-                zip: result[i].zip,
-                company: result[i].company
+                full_name: result[i].full_name,
+                phone_number: result[i].phone_number
             }
 
             const options ={
@@ -73,9 +83,9 @@ input.addEventListener('change', function (e) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(lead),
+                body: JSON.stringify(flLead),
             }
-        fetch('/upload', options); 
+        fetch('/florida', options); 
         } 
         alert('File has been sent!')
     });
