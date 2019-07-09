@@ -54,6 +54,12 @@ const California = mongoose.model('california', {
     },
     additional_info: {
         type: String,
+    },
+    source_file: {
+        type: String,
+    },
+    source: {
+        type: String,
     }
 })
 

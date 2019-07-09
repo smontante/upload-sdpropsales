@@ -5,6 +5,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const California = require('../models/california')
 const Florida = require('../models/florida')
+const Nevada = require('../models/nevada')
 const publicDirectioryPath = path.join(__dirname, '../public');
 
 app.use(express.static(publicDirectioryPath))
@@ -22,17 +23,6 @@ app.use(express.json());
 // });
 
 //POST FLORIDA
-app.post('/florida', (req, res)=> {
-    console.log('florida upload  :', req.body)
-        const florida = new Florida(req.body);
-        florida.save().then(()=> {
-            res.status(201).send(florida);
-        }).catch((e)=> {
-            res.status(400).send(e)
-        })
-});
-
-//POST NEVADA
 // app.post('/florida', (req, res)=> {
 //     console.log('florida upload  :', req.body)
 //         const florida = new Florida(req.body);
@@ -42,6 +32,17 @@ app.post('/florida', (req, res)=> {
 //             res.status(400).send(e)
 //         })
 // });
+
+//POST NEVADA
+app.post('/california_buyer', (req, res)=> {
+    console.log('nevada upload  :', req.body)
+        const california_buyer = new California(req.body);
+        california_buyer.save().then(()=> {
+            res.status(201).send(california_buyer);
+        }).catch((e)=> {
+            res.status(400).send(e)
+        })
+});
 
 app.listen(port, ()=> {
     console.log('listening on port ', port)

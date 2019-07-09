@@ -4,6 +4,7 @@ let phones = [];
 let verified = [];
 let caLead = {};
 let flLead = {};
+let nvLead = {};
 
 const btn = document.querySelector('#submit');
 const filetitle = document.querySelector('#filetitle');
@@ -60,22 +61,27 @@ input.addEventListener('change', function (e) {
     btn.addEventListener('click', () => {
         for (let i = 0; i < result.length; i++) {
 
-            flLead = {
-                id: result[i].id,
-                created_time: result[i].created_time,
-                ad_id: result[i].ad_id,
-                ad_name: result[i].ad_name,
-                adset_id: result[i].adset_id,
-                adset_name: result[i].adset_name,
-                campaign_id: result[i].campaign_id,
-                campaign_name: result[i].campaign_name,
-                form_id: result[i].form_id,
-                form_name: result[i].form_name,
-                is_organic: result[i].is_organic,
-                zip_code: result[i].zip_code,
+        caLead = {
+                name: result[i].name,
                 email: result[i].email,
-                full_name: result[i].full_name,
-                phone_number: result[i].phone_number
+                primary_phone: result[i].primary_phone,
+                secondary_phone: result[i].secondary_phone,
+                property_address: result[i].property_address,
+                price_range: result[i].price_range,
+                min_bedrooms: result[i].min_bedrooms,
+                min_bathrooms: result[i].min_bathrooms,
+                city: result[i].city,
+                state: result[i].state,
+                how_soon: result[i].how_soon,
+                reason_for_buying: result[i].reason_for_buying,
+                loan_status: result[i].loan_status,
+                down_payment: result[i].down_payment,
+                property_type: result[i].property_type,
+                credit_rating: result[i].credit_rating,
+                last_updated: result[i].last_updated,
+                additional_info: result[i].last_updated,
+                source_file: result[i].source_file,
+                source: result[i].source
             }
 
             const options ={
@@ -83,9 +89,9 @@ input.addEventListener('change', function (e) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(flLead),
+                body: JSON.stringify(caLead),
             }
-        fetch('/florida', options); 
+        fetch('/', options); 
         } 
         alert('File has been sent!')
     });
