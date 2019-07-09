@@ -61,7 +61,7 @@ input.addEventListener('change', function (e) {
     btn.addEventListener('click', () => {
         for (let i = 0; i < result.length; i++) {
 
-        caLead = {
+        lead = {
                 name: result[i].name,
                 email: result[i].email,
                 primary_phone: result[i].primary_phone,
@@ -89,9 +89,9 @@ input.addEventListener('change', function (e) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(caLead),
+                body: JSON.stringify(lead),
             }
-        fetch('/', options); 
+        fetch('/nevada', options); 
         } 
         alert('File has been sent!')
     });

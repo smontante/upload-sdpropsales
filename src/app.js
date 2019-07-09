@@ -34,11 +34,11 @@ app.use(express.json());
 // });
 
 //POST NEVADA
-app.post('/california_buyer', (req, res)=> {
-    console.log('nevada upload  :', req.body)
-        const california_buyer = new California(req.body);
-        california_buyer.save().then(()=> {
-            res.status(201).send(california_buyer);
+app.post('/nevada', (req, res)=> {
+    console.log('upload  :', req.body)
+        const nevada_buyer = new California(req.body);
+        nevada_buyer.save().then(()=> {
+            res.status(201).send(nevada_buyer);
         }).catch((e)=> {
             res.status(400).send(e)
         })
