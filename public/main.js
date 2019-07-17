@@ -2,11 +2,6 @@
 
 let result = [];
 let results = [];
-// let phones = [];
-// let verified = [];
-// let caLead = {};
-// let flLead = {};
-// let nvLead = {};
 let typeform = {};
 
 const btn = document.querySelector('#submit');
