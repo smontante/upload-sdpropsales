@@ -1,3 +1,5 @@
+import { type } from "os";
+
 let result = [];
 let results = [];
 let phones = [];
@@ -5,6 +7,7 @@ let verified = [];
 let caLead = {};
 let flLead = {};
 let nvLead = {};
+let typeform = {};
 
 const btn = document.querySelector('#submit');
 const filetitle = document.querySelector('#filetitle');
@@ -61,27 +64,52 @@ input.addEventListener('change', function (e) {
     btn.addEventListener('click', () => {
         for (let i = 0; i < result.length; i++) {
 
-        lead = {
-                name: result[i].name,
-                email: result[i].email,
-                primary_phone: result[i].primary_phone,
-                secondary_phone: result[i].secondary_phone,
-                property_address: result[i].property_address,
-                price_range: result[i].price_range,
-                min_bedrooms: result[i].min_bedrooms,
-                min_bathrooms: result[i].min_bathrooms,
+        typeform = {
+                score: result[i].score,
+                full_name: result[i].full_name,
+                first: result[i].first,
+                last: result[i].last,
+                area: result[i].area,
                 city: result[i].city,
                 state: result[i].state,
-                how_soon: result[i].how_soon,
-                reason_for_buying: result[i].reason_for_buying,
-                loan_status: result[i].loan_status,
+                zip: result[i].zip,
+                phone: result[i].phone,
+                email: result[i].email,
+                phone2: result[i].phone2,
+                email2:result[i].email2,
+                phone3: result[i].phone3,
+                email3: result[i].email3,
+                credit: result[i].credit,
+                credit2: result[i].credit2,
+                beds: result[i].beds,
+                baths: result[i].baths,
+                credit_select: result[i].credit_select,
+                features: result[i].features,
+                wants: result[i].result,
+                price: result[i].price,
+                timeframe: result[i].timeframe,
+                selling: result[i].selling,
+                sellingzip: result[i].sellingzip,
+                own_rent: result[i].own_rent,
+                housing_payment: result[i].housing_payment,
+                found_a_home: result[i].found_a_home,
+                address: result[i].address,
+                has_realtor: result[i].has_realtor,
+                decided_price: result[i].decided_price,
+                requested_price: result[i].requested_price,
+                price_range: result[i].price_range,
+                va: result[i].va,
                 down_payment: result[i].down_payment,
-                property_type: result[i].property_type,
-                credit_rating: result[i].credit_rating,
-                last_updated: result[i].last_updated,
-                additional_info: result[i].last_updated,
-                source_file: result[i].source_file,
-                source: result[i].source
+                any_credit_issue: result[i].any_credit_issue,
+                income: result[i].income,
+                credit_repair: result[i].credit_repair,
+                call_me: result[i].call_me,
+                when_to_call: result[i].when_to_call,
+                time_to_call: result[i].time_to_call,
+                am_or_pm: result[i].when_to_call,
+                id: result[i].id,
+                airtable: result[i].airtable,
+                fb: result[i].fb
             }
 
             const options ={
@@ -89,9 +117,9 @@ input.addEventListener('change', function (e) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(lead),
+                body: JSON.stringify(typeform),
             }
-        fetch('/nevada', options); 
+        fetch('/typeform', options); 
         } 
         alert('File has been sent!')
     });

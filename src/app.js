@@ -36,9 +36,9 @@ app.use(express.json());
 //POST NEVADA
 app.post('/nevada', (req, res)=> {
     console.log('upload  :', req.body)
-        const nevada_buyer = new California(req.body);
-        nevada_buyer.save().then(()=> {
-            res.status(201).send(nevada_buyer);
+        const nevada = new Nevada(req.body);
+        nevada.save().then(()=> {
+            res.status(201).send(nevada);
         }).catch((e)=> {
             res.status(400).send(e)
         })
