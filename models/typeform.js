@@ -62,7 +62,7 @@ const Typeform = mongoose.model('typeform', {
         type: String,
     },
     price: {
-        type: Number,
+        type: String,
     },
     timeframe: {
         type: String
@@ -75,18 +75,18 @@ const Typeform = mongoose.model('typeform', {
     },
     own_rent: {
         type: String,
-    }, 
+    },
     housing_payment: {
         type: Number,
     },
     found_a_home: {
-        type: Boolean,
+        type: String,
     },
     address: {
         type: String,
     },
     has_realtor: {
-        type: Boolean,
+        type: String,
     },
     decided_price: {
         type: Number,
@@ -98,22 +98,22 @@ const Typeform = mongoose.model('typeform', {
         type: Number,
     },
     va: {
-        type: Boolean,
-    },
-    down_payment: {
         type: String,
     },
+    down_payment: {
+        type: Number,
+    },
     any_credit_issue: {
-        type: Boolean,
+        type: String,
     },
     income: {
         type: Number,
     },
     credit_repair: {
-        type: Boolean,
+        type: String,
     },
     call_me: {
-        type: Boolean,
+        type: String,
     },
     when_to_call: {
         type: String,
@@ -128,10 +128,10 @@ const Typeform = mongoose.model('typeform', {
         type: String,
     },
     airtable: {
-        type: Boolean,
+        type: String,
     },
     fb: {
-        type: Boolean,
+        type: String,
     }
 })
 

@@ -80,7 +80,7 @@ input.addEventListener('change', function (e) {
                 baths: result[i].baths,
                 credit_select: result[i].credit_select,
                 features: result[i].features,
-                wants: result[i].result,
+                wants: result[i].wants,
                 price: result[i].price,
                 timeframe: result[i].timeframe,
                 selling: result[i].selling,
@@ -101,7 +101,7 @@ input.addEventListener('change', function (e) {
                 call_me: result[i].call_me,
                 when_to_call: result[i].when_to_call,
                 time_to_call: result[i].time_to_call,
-                am_or_pm: result[i].when_to_call,
+                am_or_pm: result[i].am_or_pm,
                 id: result[i].id,
                 airtable: result[i].airtable,
                 fb: result[i].fb
