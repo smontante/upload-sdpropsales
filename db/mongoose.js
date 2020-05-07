@@ -1,6 +1,8 @@
-const mongoose = require('mongoose')
-
-mongoose.connect('mongodb+srv://djohnson:Darren12@konvertech-leads-1ts1t.mongodb.net/konvertech_leads?retryWrites=true&w=majority', {
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1:27017/sellers-api', {
     useNewUrlParser: true,
-    useCreateIndex: true
- })
+    useCreateIndex: true,
+    useUnifiedTopology: true
+})
+
+///Users/Admin/mongodb/bin/mongod  --dbpath=/Users/Admin/mongodb-data

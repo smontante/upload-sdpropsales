@@ -2,7 +2,7 @@
 
 let result = [];
 let results = [];
-let typeform = {};
+let sellers = {};
 
 const btn = document.querySelector('#submit');
 const filetitle = document.querySelector('#filetitle');
@@ -20,7 +20,7 @@ function splitCsv(str) {
             accum.isConcatting = !accum.isConcatting
         }
         return accum;
-    }, {soFar: [], isConcatting: false}).soFar
+    }, { soFar: [], isConcatting: false }).soFar
 }
 
 //FUNCTION LISTENS TO EVENT CHANGE UPON FILE INPUT
@@ -36,7 +36,7 @@ input.addEventListener('change', function (e) {
             return h.trim();
         });
 
-        for (var i = 1; i < lines_.length; i++) {   
+        for (var i = 1; i < lines_.length; i++) {
             var obj = {};
             var currentline = splitCsv(lines_[i]);
             for (var j = 0; j < headers.length; j++) {
@@ -50,7 +50,7 @@ input.addEventListener('change', function (e) {
         const lines = reader.result.split('\n').map(function (line) {
             return line.split(',')
         });
-        
+
         results = JSON.stringify(result);
     }
     reader.readAsText(input.files[0]);
@@ -59,63 +59,51 @@ input.addEventListener('change', function (e) {
     btn.addEventListener('click', () => {
         for (let i = 0; i < result.length; i++) {
 
-        typeform = {
-                score: result[i].score,
-                full_name: result[i].full_name,
-                first: result[i].first,
-                last: result[i].last,
-                area: result[i].area,
-                city: result[i].city,
-                state: result[i].state,
-                zip: result[i].zip,
-                phone: result[i].phone,
-                email: result[i].email,
-                phone2: result[i].phone2,
-                email2:result[i].email2,
-                phone3: result[i].phone3,
-                email3: result[i].email3,
-                credit: result[i].credit,
-                credit2: result[i].credit2,
-                beds: result[i].beds,
-                baths: result[i].baths,
-                credit_select: result[i].credit_select,
-                features: result[i].features,
-                wants: result[i].wants,
-                price: result[i].price,
-                timeframe: result[i].timeframe,
-                selling: result[i].selling,
-                sellingzip: result[i].sellingzip,
-                own_rent: result[i].own_rent,
-                housing_payment: result[i].housing_payment,
-                found_a_home: result[i].found_a_home,
+            sellers = {
                 address: result[i].address,
-                has_realtor: result[i].has_realtor,
-                decided_price: result[i].decided_price,
-                requested_price: result[i].requested_price,
-                price_range: result[i].price_range,
-                va: result[i].va,
-                down_payment: result[i].down_payment,
-                any_credit_issue: result[i].any_credit_issue,
-                income: result[i].income,
-                credit_repair: result[i].credit_repair,
-                call_me: result[i].call_me,
-                when_to_call: result[i].when_to_call,
-                time_to_call: result[i].time_to_call,
-                am_or_pm: result[i].am_or_pm,
-                id: result[i].id,
-                airtable: result[i].airtable,
-                fb: result[i].fb
+                asset_condition: result[i].asset_condition,
+                baths: result[i].baths,
+                beds: result[i].beds,
+                cc_1: result[i].cc_1,
+                cc_2: result[i].cc_2,
+                cc_3: result[i].cc_3,
+                contact_person: result[i].contact_person,
+                deal_status: result[i].deal_status,
+                dnc_status: result[i].dnc_status,
+                dnc_status_2: result[i].dnc_status_2,
+                eb_1: result[i].eb_1,
+                eb_2: result[i].eb_2,
+                eb_3: result[i].eb_3,
+                email: result[i].email,
+                email_2: result[i].email_2,
+                equity: result[i].equity,
+                lead_level: result[i].lead_level,
+                lead_type: result[i].lead_type,
+                mailing_address: result[i].mailing_address,
+                name: result[i].name,
+                phone: result[i].phone,
+                phone_2: result[i].phone_2,
+                rvm_1: result[i].rvm_1,
+                rvm_2: result[i].rvm_2,
+                rvm_3: result[i].rvm_3,
+                sq_feet: result[i].sq_feet,
+                stage: result[i].stage,
+                take_off_list: result[i].take_off_list,
+                tmb_1: result[i].tmb_1,
+                tmb_2: result[i].tmb_2,
+                tmb_3: result[i].tmb_3,
+                value: result[i].value
             }
 
-            const options ={
+            const options = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(typeform),
+                body: JSON.stringify(sellers),
             }
-        fetch('/typeform', options); 
-        } 
+            fetch('/sellers', options);
+        }
         alert('File has been sent!')
     });
 
