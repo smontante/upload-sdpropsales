@@ -58,7 +58,6 @@ input.addEventListener('change', function (e) {
 
     btn.addEventListener('click', () => {
         for (let i = 0; i < result.length; i++) {
-
             sellers = {
                 address: result[i].address,
                 asset_condition: result[i].asset_condition,
@@ -94,7 +93,7 @@ input.addEventListener('change', function (e) {
                 tmb_3: result[i].tmb_3,
                 value: result[i].value
             }
-
+            //console.log('/Sellers: ', sellers);
             const options = {
                 method: 'POST',
                 headers: {
